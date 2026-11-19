@@ -24,6 +24,7 @@ public class CartServlet extends HttpServlet {
             url="/index.html";
         } else if (action.equals("checkout")) {
             url="/checkout.jsp";
+            session.removeAttribute("cart");
         } else if (action.equals("add")) {
             String productID = request.getParameter("productID");
             String strPrice = request.getParameter("price");
