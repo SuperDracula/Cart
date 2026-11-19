@@ -16,6 +16,8 @@ public class CartServlet extends HttpServlet {
 
         String action = request.getParameter("action");
         String url = "/cart.jsp";
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
         if (action == null) {
             action = "join";  // default action
         } if (action.equals("join")) {
@@ -28,11 +30,8 @@ public class CartServlet extends HttpServlet {
             String description = request.getParameter("description");
             double price = Double.parseDouble(strPrice);
 
-            HttpSession session = request.getSession();
-
             Product product = new Product(productID, price, description);
-            
-            Cart cart = (Cart) session.getAttribute("cart");
+
             int quantity = 1;
             if (cart == null) {
                 cart = new Cart();
@@ -41,22 +40,21 @@ public class CartServlet extends HttpServlet {
             LineItem item = new LineItem(product, quantity);
             cart.addItems(item);
         } else if (action.equals("update")) {
-            HttpSession session = request.getSession();
             String productID = request.getParameter("productID");
             String strQuantity = request.getParameter("quantity").trim();
-            int quantity = Integer.parseInt(strQuantity);
-
-            Cart cart = (Cart) session.getAttribute("cart");
-            cart.updateItems(productID, quantity);
+            try {
+                int quantity = Integer.parseInt(strQuantity);
+                if (quantity > 0) {
+                    cart.updateItems(productID, quantity);
+                }
+            } catch (NumberFormatException | NullPointerException e) {}
         } else if (action.equals("remove")) {
             String productID = request.getParameter("productID");
-            HttpSession session = request.getSession();
 
-            Cart cart = (Cart) session.getAttribute("cart");
             cart.removeItems(productID);
         }
 
-        request.getRequestDispatcher(url).forward(request, response);
+        response.sendRedirect(request.getContextPath() + url);
 
     }
 
@@ -64,6 +62,6 @@ public class CartServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response)
             throws ServletException, IOException {
-        doPost(request, response);
+        request.getRequestDispatcher("/cart.jsp").forward(request, response);
     }
 }

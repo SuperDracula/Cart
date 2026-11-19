@@ -42,6 +42,7 @@ public class Cart {
         for (LineItem i : items) {
             if (i.getProduct().getId().equals(productId)) {
                 items.remove(i);
+                return;
             }
         }
     }
