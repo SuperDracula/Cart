@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Murach's Java Servlets and JSP</title>
+    <link rel="stylesheet" href="styles/main.css" type="text/css">
+</head>
+    
+<body>
+    <h1>CD list</h1>
+    <table>
+        <tbody><tr>
+            <th>Description</th>
+            <th class="right">Price</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr>
+            <td>86 (the band) - True Life Songs and Pictures</td>
+            <td class="right">$14.95</td>
+            <td><form action="cart" method="post">
+                <input type="hidden" name="description" value="86 (the band) - True Life Songs and Pictures">
+                <input type="hidden" name="action" value="add">
+                <input type="hidden" name="productID" value="1">
+                <input type="hidden" name="price" value="14.95">
+                <input type="submit" value="Add To Cart">
+            </form></td>
+        </tr>
+        <tr>
+            <td>Paddlefoot - The first CD</td>
+            <td class="right">$12.95</td>
+            <td><form action="cart" method="post">
+                <input type="hidden" name="description" value="Paddlefoot - The first CD">
+                <input type="hidden" name="action" value="add">
+                <input type="hidden" name="productID" value="2">
+                <input type="hidden" name="price" value="12.95">
+                <input type="submit" value="Add To Cart">
+            </form></td>
+        </tr>
+        <tr>
+            <td>Paddlefoot - The second CD</td>
+            <td class="right">$14.95</td>
+            <td><form action="cart" method="post">
+                <input type="hidden" name="description" value="Paddlefoot - The second CD">
+                <input type="hidden" name="action" value="add">
+                <input type="hidden" name="productID" value="3">
+                <input type="hidden" name="price" value="14.95">
+                <input type="submit" value="Add To Cart">
+            </form></td>
+        </tr>
+        <tr>
+            <td>Joe Rut - Genuine Wood Grained Finish</td>
+            <td class="right">$14.95</td>
+            <td><form action="cart" method="post">
+                <input type="hidden" name="description" value="Joe Rut - Genuine Wood Grained Finish">
+                <input type="hidden" name="action" value="add">
+                <input type="hidden" name="productID" value="4">
+                <input type="hidden" name="price" value="14.95">
+                <input type="submit" value="Add To Cart">
+            </form></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
