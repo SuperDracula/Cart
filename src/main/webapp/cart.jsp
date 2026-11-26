@@ -12,38 +12,37 @@
     <h1>Your cart</h1>
 
     <table>
-    <tbody>
-    <tr>
-        <th>Quantity</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Amount</th>
-        <th></th>
-    </tr>
-
-    <c:forEach var="item" items="${sessionScope.cart.items}">
+        <tbody>
             <tr>
-                <td>
-                    <form action="cart" method="post">
-                        <input type="hidden" name="action" value="update">
-                        <input type="hidden" name="productID" value="${item.product.id}">
-                        <input type="text" name="quantity" value="${item.quantity}">
-                        <input type="submit" value="Update">
-                    </form>
-                </td>
-                <td>${item.product.description}</td>
-                <td>$<fmt:formatNumber value="${item.product.price}" pattern="0.00"/></td>
-                <td>$<fmt:formatNumber value="${item.total}" pattern="0.00"/></td>
-                <td>
-                    <form action="cart" method="post">
-                        <input type="hidden" name="productID" value="${item.product.id}">
-                        <input type="hidden" name="action" value="remove">
-                        <input type="submit" value="Remove Item">
-                    </form>
-                </td>
+                <th>Quantity</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th></th>
             </tr>
-        </c:forEach>
 
+            <c:forEach var="item" items="${sessionScope.cart.items}">
+                    <tr>
+                        <td>
+                            <form action="cart" method="post">
+                                <input type="hidden" name="action" value="update">
+                                <input type="hidden" name="productID" value="<c:out value='${item.product.id}'/>">
+                                <input type="text" name="quantity" value="<c:out value='${item.quantity}'/>">
+                                <input type="submit" value="Update">
+                            </form>
+                        </td>
+                        <td><c:out value="${item.product.description}"/></td>
+                        <td>$<fmt:formatNumber value="${item.product.price}" pattern="0.00"/></td>
+                        <td>$<fmt:formatNumber value="${item.total}" pattern="0.00"/></td>
+                        <td>
+                            <form action="cart" method="post">
+                                <input type="hidden" name="productID" value="<c:out value='${item.product.id}'/>">
+                                <input type="hidden" name="action" value="remove">
+                                <input type="submit" value="Remove Item">
+                            </form>
+                        </td>
+                    </tr>
+            </c:forEach>
         </tbody>
     </table>
 
